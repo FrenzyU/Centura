@@ -1,0 +1,33 @@
+- component: App
+  children:
+  background: Dark
+  Design Language: Minimalist
+    - component: View
+      Name: CenturaLogIn
+      Backdrop: https://wallpapers.com/images/featured/black-anime-1ruvfye415umyc9s.jpg
+      - component: PasswordEntry
+        defaulttext: "Enter your password"
+      - component: UsernameEntry
+        defaulttext: "Enter your username u poopy dungi"
+      state: 
+        isVisible: true
+      children:
+        - component: Text
+          condition: isVisible
+          content: "Hi mom"
+          position: center
+        - component: Button
+          position: center
+          eventHandlers:
+            onClick: toggleVisibility
+          content: "Toggle Visibility"
+    - component: loadingAnimation
+      state:
+        pageLoad: true
+      children:
+      - component: animation
+        condition: pageLoad
+        content: https://usagif.com/wp-content/uploads/loading-7.gif
+
+
+

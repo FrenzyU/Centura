@@ -1,0 +1,447 @@
+{
+  "version": 2,
+  "tree": {
+    "name": "root",
+    "children": [
+      {
+        "name": "index.production.js",
+        "children": [
+          {
+            "name": "node_modules/.pnpm/tiny-invariant@1.3.1/node_modules/tiny-invariant/dist/esm/tiny-invariant.js",
+            "uid": "da8f-250"
+          },
+          {
+            "name": "packages",
+            "children": [
+              {
+                "name": "router/src",
+                "children": [
+                  {
+                    "uid": "da8f-252",
+                    "name": "history.ts"
+                  },
+                  {
+                    "uid": "da8f-254",
+                    "name": "utils.ts"
+                  },
+                  {
+                    "uid": "da8f-256",
+                    "name": "path.ts"
+                  },
+                  {
+                    "uid": "da8f-258",
+                    "name": "qss.ts"
+                  },
+                  {
+                    "uid": "da8f-260",
+                    "name": "route.ts"
+                  },
+                  {
+                    "uid": "da8f-262",
+                    "name": "routeConfig.ts"
+                  },
+                  {
+                    "uid": "da8f-266",
+                    "name": "routeMatch.ts"
+                  },
+                  {
+                    "uid": "da8f-268",
+                    "name": "searchParams.ts"
+                  },
+                  {
+                    "uid": "da8f-270",
+                    "name": "router.ts"
+                  },
+                  {
+                    "uid": "da8f-272",
+                    "name": "index.ts"
+                  }
+                ]
+              },
+              {
+                "name": "store/build/esm/index.js",
+                "uid": "da8f-264"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "isRoot": true
+  },
+  "nodeParts": {
+    "da8f-250": {
+      "renderedLength": 199,
+      "gzipLength": 134,
+      "brotliLength": 0,
+      "mainUid": "da8f-249"
+    },
+    "da8f-252": {
+      "renderedLength": 4236,
+      "gzipLength": 1085,
+      "brotliLength": 0,
+      "mainUid": "da8f-251"
+    },
+    "da8f-254": {
+      "renderedLength": 2572,
+      "gzipLength": 950,
+      "brotliLength": 0,
+      "mainUid": "da8f-253"
+    },
+    "da8f-256": {
+      "renderedLength": 5601,
+      "gzipLength": 1328,
+      "brotliLength": 0,
+      "mainUid": "da8f-255"
+    },
+    "da8f-258": {
+      "renderedLength": 1395,
+      "gzipLength": 558,
+      "brotliLength": 0,
+      "mainUid": "da8f-257"
+    },
+    "da8f-260": {
+      "renderedLength": 415,
+      "gzipLength": 208,
+      "brotliLength": 0,
+      "mainUid": "da8f-259"
+    },
+    "da8f-262": {
+      "renderedLength": 1261,
+      "gzipLength": 478,
+      "brotliLength": 0,
+      "mainUid": "da8f-261"
+    },
+    "da8f-264": {
+      "renderedLength": 1341,
+      "gzipLength": 493,
+      "brotliLength": 0,
+      "mainUid": "da8f-263"
+    },
+    "da8f-266": {
+      "renderedLength": 4823,
+      "gzipLength": 1337,
+      "brotliLength": 0,
+      "mainUid": "da8f-265"
+    },
+    "da8f-268": {
+      "renderedLength": 1387,
+      "gzipLength": 483,
+      "brotliLength": 0,
+      "mainUid": "da8f-267"
+    },
+    "da8f-270": {
+      "renderedLength": 24107,
+      "gzipLength": 5633,
+      "brotliLength": 0,
+      "mainUid": "da8f-269"
+    },
+    "da8f-272": {
+      "renderedLength": 0,
+      "gzipLength": 0,
+      "brotliLength": 0,
+      "mainUid": "da8f-271"
+    }
+  },
+  "nodeMetas": {
+    "da8f-249": {
+      "id": "/node_modules/.pnpm/tiny-invariant@1.3.1/node_modules/tiny-invariant/dist/esm/tiny-invariant.js",
+      "moduleParts": {
+        "index.production.js": "da8f-250"
+      },
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        },
+        {
+          "uid": "da8f-261"
+        },
+        {
+          "uid": "da8f-269"
+        }
+      ]
+    },
+    "da8f-251": {
+      "id": "/packages/router/src/history.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-252"
+      },
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        },
+        {
+          "uid": "da8f-269"
+        }
+      ]
+    },
+    "da8f-253": {
+      "id": "/packages/router/src/utils.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-254"
+      },
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        },
+        {
+          "uid": "da8f-255"
+        },
+        {
+          "uid": "da8f-269"
+        }
+      ]
+    },
+    "da8f-255": {
+      "id": "/packages/router/src/path.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-256"
+      },
+      "imported": [
+        {
+          "uid": "da8f-253"
+        }
+      ],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        },
+        {
+          "uid": "da8f-261"
+        },
+        {
+          "uid": "da8f-269"
+        }
+      ]
+    },
+    "da8f-257": {
+      "id": "/packages/router/src/qss.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-258"
+      },
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        },
+        {
+          "uid": "da8f-267"
+        }
+      ]
+    },
+    "da8f-259": {
+      "id": "/packages/router/src/route.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-260"
+      },
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        },
+        {
+          "uid": "da8f-269"
+        }
+      ]
+    },
+    "da8f-261": {
+      "id": "/packages/router/src/routeConfig.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-262"
+      },
+      "imported": [
+        {
+          "uid": "da8f-249"
+        },
+        {
+          "uid": "da8f-255"
+        }
+      ],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        }
+      ]
+    },
+    "da8f-263": {
+      "id": "/packages/store/build/esm/index.js",
+      "moduleParts": {
+        "index.production.js": "da8f-264"
+      },
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "da8f-265"
+        },
+        {
+          "uid": "da8f-269"
+        }
+      ]
+    },
+    "da8f-265": {
+      "id": "/packages/router/src/routeMatch.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-266"
+      },
+      "imported": [
+        {
+          "uid": "da8f-263"
+        }
+      ],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        },
+        {
+          "uid": "da8f-269"
+        }
+      ]
+    },
+    "da8f-267": {
+      "id": "/packages/router/src/searchParams.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-268"
+      },
+      "imported": [
+        {
+          "uid": "da8f-257"
+        }
+      ],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        },
+        {
+          "uid": "da8f-269"
+        }
+      ]
+    },
+    "da8f-269": {
+      "id": "/packages/router/src/router.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-270"
+      },
+      "imported": [
+        {
+          "uid": "da8f-263"
+        },
+        {
+          "uid": "da8f-249"
+        },
+        {
+          "uid": "da8f-255"
+        },
+        {
+          "uid": "da8f-259"
+        },
+        {
+          "uid": "da8f-265"
+        },
+        {
+          "uid": "da8f-267"
+        },
+        {
+          "uid": "da8f-253"
+        },
+        {
+          "uid": "da8f-251"
+        }
+      ],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        }
+      ]
+    },
+    "da8f-271": {
+      "id": "/packages/router/src/index.ts",
+      "moduleParts": {
+        "index.production.js": "da8f-272"
+      },
+      "imported": [
+        {
+          "uid": "da8f-249"
+        },
+        {
+          "uid": "da8f-251"
+        },
+        {
+          "uid": "da8f-273"
+        },
+        {
+          "uid": "da8f-274"
+        },
+        {
+          "uid": "da8f-255"
+        },
+        {
+          "uid": "da8f-257"
+        },
+        {
+          "uid": "da8f-259"
+        },
+        {
+          "uid": "da8f-261"
+        },
+        {
+          "uid": "da8f-275"
+        },
+        {
+          "uid": "da8f-265"
+        },
+        {
+          "uid": "da8f-269"
+        },
+        {
+          "uid": "da8f-267"
+        },
+        {
+          "uid": "da8f-253"
+        }
+      ],
+      "importedBy": [],
+      "isEntry": true
+    },
+    "da8f-273": {
+      "id": "/packages/router/src/frameworks.ts",
+      "moduleParts": {},
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        }
+      ]
+    },
+    "da8f-274": {
+      "id": "/packages/router/src/link.ts",
+      "moduleParts": {},
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        }
+      ]
+    },
+    "da8f-275": {
+      "id": "/packages/router/src/routeInfo.ts",
+      "moduleParts": {},
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "da8f-271"
+        }
+      ]
+    }
+  },
+  "env": {
+    "rollup": "2.79.1"
+  },
+  "options": {
+    "gzip": true,
+    "brotli": false,
+    "sourcemap": false
+  }
+}

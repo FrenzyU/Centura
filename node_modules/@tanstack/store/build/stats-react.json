@@ -1,0 +1,71 @@
+{
+  "version": 2,
+  "tree": {
+    "name": "root",
+    "children": [
+      {
+        "name": "index.production.js",
+        "children": [
+          {
+            "name": "node_modules/.pnpm/immer@9.0.16/node_modules/immer/dist/immer.esm.mjs",
+            "uid": "e407-5"
+          },
+          {
+            "name": "packages/store/src/index.ts",
+            "uid": "e407-7"
+          }
+        ]
+      }
+    ],
+    "isRoot": true
+  },
+  "nodeParts": {
+    "e407-5": {
+      "renderedLength": 8203,
+      "gzipLength": 3238,
+      "brotliLength": 0,
+      "mainUid": "e407-4"
+    },
+    "e407-7": {
+      "renderedLength": 1067,
+      "gzipLength": 410,
+      "brotliLength": 0,
+      "mainUid": "e407-6"
+    }
+  },
+  "nodeMetas": {
+    "e407-4": {
+      "id": "/node_modules/.pnpm/immer@9.0.16/node_modules/immer/dist/immer.esm.mjs",
+      "moduleParts": {
+        "index.production.js": "e407-5"
+      },
+      "imported": [],
+      "importedBy": [
+        {
+          "uid": "e407-6"
+        }
+      ]
+    },
+    "e407-6": {
+      "id": "/packages/store/src/index.ts",
+      "moduleParts": {
+        "index.production.js": "e407-7"
+      },
+      "imported": [
+        {
+          "uid": "e407-4"
+        }
+      ],
+      "importedBy": [],
+      "isEntry": true
+    }
+  },
+  "env": {
+    "rollup": "2.79.1"
+  },
+  "options": {
+    "gzip": true,
+    "brotli": false,
+    "sourcemap": false
+  }
+}
