@@ -20,7 +20,7 @@ initializeApp(firebaseConfig);
 const Logo = () => {
   return (
     <div className="mb-8">
-      <TypingAnimation text="Centura" />
+      <TypingAnimation content="Welcome to Centura" textSize = 'text-2xl' />
     </div>
   );
 };

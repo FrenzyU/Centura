@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './TypingAnimation.css';
 
-const TypingAnimation = ({ content, textStyle }) => {
+const TypingAnimation = ({ content, textColor = 'text-white', textSize = 'text-xl' }) => {
   const [displayedContent, setDisplayedContent] = useState('');
   const [contentIndex, setContentIndex] = useState(0);
 
@@ -21,10 +20,11 @@ const TypingAnimation = ({ content, textStyle }) => {
   }, [contentIndex, content]);
 
   return (
-    <div className="typing-animation" style={textStyle}>
+    <div className={`typing-animation ${textColor} ${textSize}`}>
       {displayedContent}
     </div>
   );
 };
 
 export default TypingAnimation;
+
