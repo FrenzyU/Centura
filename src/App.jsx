@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./index.css";
 import TypingAnimation from "./TypingAnimation";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -19,7 +19,7 @@ initializeApp(firebaseConfig);
 
 const Logo = () => {
   return (
-    <div className="logo-container">
+    <div className="mb-8">
       <TypingAnimation text="Centura" />
     </div>
   );
@@ -38,26 +38,32 @@ const Card = ({ onSignIn }) => {
   };
 
   return (
-    <div className="card">
-      <h2 className="title">Sign in to Centura</h2>
+    <div className="bg-gray-700 bg-opacity-25 p-8 rounded-lg w-full sm:max-w-md">
+      <h2 className="text-2xl font-semibold mb-4 text-white">Sign in to Centura</h2>
       <input
         type="text"
         placeholder="Email"
         value={email}
         onChange={handleEmailChange}
+        className="block w-full py-2 px-4 mb-4 bg-gray-700 bg-opacity-25 border-none text-white"
       />
       <input
         type="password"
         placeholder="Password"
         value={password}
         onChange={handlePasswordChange}
+        className="block w-full py-2 px-4 mb-4 bg-gray-700 bg-opacity-25 border-none text-white"
       />
-      <button onClick={() => onSignIn(email, password)}>Sign in</button>
-      <a href="#">Forgot your password?</a>
+      <button
+        onClick={() => onSignIn(email, password)}
+        className="block w-full py-2 px-4 mb-4 bg-blue-500 border-none text-white cursor-pointer"
+      >
+        Sign in
+      </button>
+      <a href="#" className="text-blue-500 no-underline">Forgot your password?</a>
     </div>
   );
 };
-
 
 const LoadingAnimation = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -73,15 +79,15 @@ const LoadingAnimation = () => {
   }, []);
 
   return (
-    <div className={`loading-container ${isVisible ? "" : "hidden"}`}>
+    <div className={`flex justify-center items-center bg-black fixed top-0 bottom-0 left-0 right-0 z-10 ${isVisible ? "" : "hidden"}`}>
       <img
         src="https://usagif.com/wp-content/uploads/loading-7.gif"
         alt="Loading animation"
+        className="block mx-auto"
       />
     </div>
   );
 };
-
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -100,7 +106,7 @@ const App = () => {
       showError(error.message);
     }
   };
-  
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -116,7 +122,7 @@ const App = () => {
   }
 
   return (
-    <div className="app-container">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-black p-4 box-border">
       {!isAuthenticated ? (
         <>
           <Logo />
