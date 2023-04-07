@@ -7,7 +7,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import alpaca from './AlpacaAPI';
+
 
 const fetchHistoricalData = async (symbol) => {
     try {
