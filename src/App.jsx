@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./index.css";
 import TypingAnimation from "./TypingAnimation";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import HomePage from "./HomePage";
+import Dashboard from './Dashboard';
+import '../styles/Home.module.css';
+import "./index.css";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBIFjE5crOVags7vvDxKIcXaTyqUyT5aLw",
@@ -20,7 +22,7 @@ initializeApp(firebaseConfig);
 const Logo = () => {
   return (
     <div className="mb-8">
-      <TypingAnimation content="Welcome to Centura" textSize = 'text-2xl' />
+      <TypingAnimation content="Welcome to Centura" textSize='text-2xl' />
     </div>
   );
 };
@@ -129,11 +131,12 @@ const App = () => {
           <Card onSignIn={handleSignIn} />
         </>
       ) : (
-        <HomePage />
+        <>
+          <HomePage />
+        </>
       )}
     </div>
   );
 };
 
 export default App;
-

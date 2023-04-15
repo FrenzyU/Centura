@@ -1,109 +1,251 @@
-import React, { useState } from 'react';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+import { useState, useRef, useEffect } from "react";
+import Head from "next/head";
+import Image from "next/image";
+import ReactMarkdown from "react-markdown";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Link } from 'react-router-dom';
+import styles from "../styles/Home.module.css"
+import TypingAnimation from "./TypingAnimation";
+import { Configuration, OpenAIApi } from "openai";
 
-
-const fetchHistoricalData = async (symbol) => {
-    try {
-      const data = await alpaca.getBars('day', symbol, {
-        limit: 6,
-      });
-      return data.map((bar) => ({
-        date: bar.start,
-        price: bar.close,
-      }));
-    } catch (error) {
-      console.error('Error fetching historical data:', error);
-      return [];
+export default function Dashboard({ fetchedData }) {
+  const [userInput, setUserInput] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState([
+    { role: "assistant", content: "Hi there! My name is Centura. How can I help?" },
+  ]);
+  const [data, setData] = useState({});
+  const messageListRef = useRef(null);
+  const textAreaRef = useRef(null);
+  
+  useEffect(() => {
+    if (messageListRef.current) {
+      const messageList = messageListRef.current;
+      messageList.scrollTop = messageList.scrollHeight;
     }
+  }, [messages]);
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
+  }, []);
+
+  const handleError = (error) => {
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        role: "assistant",
+        content: error && error.message // Use the custom error message when available
+          ? `Error: ${error.message}`
+          : "Oops! There seems to be an error. Please try again.",
+      },
+    ]);
+    setLoading(false);
+    setUserInput("");
   };
   
-
-const Dashboard = () => {
-  const [search, setSearch] = useState('');
-  const [stocks, setStocks] = useState([]);
-
-  const handleSearch = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    if (!Array.isArray(messages)) {
+      console.error("messages is not an array");
+      return;
+    }
+  
+    if (userInput.trim() === "") {
+      return;
+    }
+  
+    setLoading(true);
+    const context = [...messages, { role: "user", content: userInput }];
+    setMessages(context);
+  
     try {
-      const stock = await alpaca.getAsset(search);
-      if (stock.status === 'active') {
-        const historicalData = await fetchHistoricalData(stock.symbol);
-        setStocks((prevStocks) => [
-          ...prevStocks,
-          {
-            ...stock,
-            historicalData,
-          },
-        ]);
-      } else {
-        console.error('Stock is not active');
+      const openaiApiEndpoint = `https://whispering-mesa-44331.herokuapp.com/chat/completions`;
+      const systemMessage ={
+        role: "system",
+        content: "Speak as if you are the user's concierge"
       }
-    } catch (error) {
-      console.error('Error fetching stock data:', error);
+      const response = await fetch(openaiApiEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [
+            systemMessage,
+            ...messages,
+            context,
+          ],
+        }),
+      });
+  
+      const completion = await response.json();
+      const responseMessage = data.choices[0].content.trim();
+          setMessages((prevMessages) => [
+      ...prevMessages,
+      { role: "assistant", input: responseMessage },
+    ]);
+  } catch (error) {
+    handleError(error);
+  }
+
+  setLoading(false);
+  setUserInput("");
+};
+  
+  
+  
+
+  const handleEnter = (e) => {
+    if (e.key === "Enter" && userInput) {
+      if (!e.shiftKey && userInput) {
+        handleSubmit(e);
+      }
+    } else if (e.key === "Enter") {
+      e.preventDefault();
     }
   };
-  
 
   return (
     <>
-      <h1 className="text-3xl font-semibold">Dashboard</h1>
-      <form onSubmit={handleSearch} className="mt-4">
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="rounded p-2"
-          placeholder="Search stock"
-        />
-        <button
-          type="submit"
-          className="rounded p-2 ml-2 bg-blue-500 text-white"
-        >
-          Add
-        </button>
-      </form>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-        {stocks.map((stock) => (
-            <div key={stock.symbol} className="bg-gray-700 p-8 rounded">
-                <div className="flex items-center justify-between mb-4">
-                    <div className="font-semibold text-xl">{stock.name}</div>
-                    <div className="text-white text-opacity-50">{stock.symbol}</div>
+      <Head>
+        <title>Centura</title>
+        <meta name="description" content="OpenAI interface" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/logo.svg" />
+      </Head>
+      <div className={styles.topnav}>
+        <div className={styles.navlogo}>
+        <TypingAnimation content="Welcome to Centura, your personal concierge. Ask me anything and everything!" textSize='text-2xl'/>
+        </div>
+        <div className={styles.navlinks}>
+          {/* ... */}
+          {data && (
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {data.map((item) => (
+                <div key={item.id} className="flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden ">
+                  <div className="p-4 flex-grow">
+                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                    <ReactMarkdown className="prose mt-2 text-sm">
+                      {item.description}
+                    </ReactMarkdown>
+                  </div>
+                  <div className="p-4">
+                    <Link to={`/dashboard/${item.id}`} className="text-blue-500 hover:text-blue-600">
+                      View details
+                    </Link>
+                  </div>
                 </div>
-                <div className="w-full h-20">
-                    <ResponsiveContainer>
-                        <LineChart data={stock.historicalData}>
-                            <Line
-                                type="monotone"
-                                dataKey="price"
-                                stroke="rgba(255, 255, 255, 0.7)"
-                                strokeWidth={2}
-                                dot={false}
-                                activeDot={false}
-                            />
-                            <XAxis dataKey="date" tickFormatter={(date) => new Date(date).toLocaleDateString()} hide />
-                            <YAxis hide />
-                            <Tooltip labelFormatter={(date) => new Date(date).toLocaleDateString()} />
-                        </LineChart>
-                    </ResponsiveContainer>
-                </div>
+              ))}
             </div>
-        ))}
-
+            )}
+          </div>
       </div>
+      <main className={styles.main}>
+        <div className={styles.cloud}>
+          <div ref={messageListRef} className={styles.messagelist}>
+            {messages.map((message, index) => {
+              return (
+                // The latest message sent by the user will be animated while waiting for a response
+                <div
+                  key={index}
+                  className={
+                    message.role === "user" &&
+                    loading &&
+                    index === messages.length - 1
+                      ? styles.usermessagewaiting
+                      : message.role === "assistant"
+                      ? styles.apimessage
+                      : styles.usermessage
+                  }
+                >
+                  {/* Display the correct icon depending on the message type */}
+                  {message.role === "assistant" ? (
+                    <Image
+                      src="/logo.svg"
+                      alt="AI"
+                      width="30"
+                      height="30"
+                      className={styles.boticon}
+                      priority={true}
+                    />
+                  ) : (
+                    <Image
+                      src="/usericon.png"
+                      alt="Me"
+                      width="30"
+                      height="30"
+                      className={styles.usericon}
+                      priority={true}
+                    />
+                  )}
+                  <div className={styles.markdownanswer}>
+                    {/* Messages are being rendered in Markdown format */}
+                    <ReactMarkdown linkTarget={"_blank"}>
+                      {message.content}
+                    </ReactMarkdown>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className={styles.center}>
+          <div className={styles.cloudform}>
+            <form onSubmit={handleSubmit}>
+              <textarea
+                disabled={loading}
+                onKeyDown={handleEnter}
+                ref={textAreaRef}
+                autoFocus={false}
+                rows={1}
+                maxLength={9999999}
+                
+                id="userInput"
+                name="userInput"
+                placeholder={
+                  loading ? "Waiting for response..." : "Type your question..."
+                }
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                className={styles.textarea}
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className={styles.generatebutton}
+              >
+                {loading ? (
+                  <div className={styles.loadingwheel}>
+                    <CircularProgress color="inherit" size={20} />{" "}
+                  </div>
+                ) : (
+                  // Send icon SVG in input field
+                  <svg
+                    viewBox="0 0 20 20"
+                    className={styles.svgicon}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                  </svg>
+                )}
+              </button>
+            </form>
+          </div>
+          <div className={styles.footer}>
+            <p>
+              Powered by{" "}
+              <a href="https://openai.com/" target="_blank">
+                OpenAI
+              </a>
+              . 
+            </p>
+          </div>
+        </div>
+      </main>
     </>
   );
-};
-
-export default Dashboard;
-
-
-
-
-
+}

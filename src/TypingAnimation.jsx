@@ -12,7 +12,7 @@ const TypingAnimation = ({ content, textColor = 'text-white', textSize = 'text-x
       } else {
         clearTimeout(timer);
       }
-    }, 100);
+    }, 50);
 
     return () => {
       clearTimeout(timer);

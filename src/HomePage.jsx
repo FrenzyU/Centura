@@ -2,15 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Users from './users';
 import Settings from './Settings';
-import Dashboard from './Dashboard';
+import CustomDashboard from './Dashboard';
 
-const HomePage = () => {
+const HomePage = ({ alpaca }) => {
   return (
     <Router>
-      <div className="min-h-screen w-full bg-black text-gray-200">
-        <div className="flex">
+      <div className="w-full bg-black text-gray-200 ">
+        <div className="flex flex-col md:flex-row md:h-screen">
           {/* Sidebar */}
-          <div className="w-64 bg-gray-900 p-4">
+          <div className="w-full md:w-64 bg-black-900 p-4">
             <div className="text-white font-bold text-2xl mb-4">Centura</div>
             <nav>
               <Link to="/dashboard" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
@@ -25,9 +25,9 @@ const HomePage = () => {
             </nav>
           </div>
           {/* Main content */}
-          <div className="flex-1 p-8">
+          <div className="flex-1 md:p-8">
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard" element={<CustomDashboard />} />
               <Route path="/users" element={<Users />} />
               <Route path="/settings" element={<Settings />} />
             </Routes>
@@ -37,6 +37,5 @@ const HomePage = () => {
     </Router>
   );
 };
-
 
 export default HomePage;
